@@ -31,3 +31,25 @@ ORDER BY
 
 
 --4. Display the list of doctors and the number of patients they are attending to.
+
+SELECT
+    d.first_name,
+    d.last_name,
+    COUNT(a.patient_id) AS number_of_patients
+FROM
+    doctors d
+LEFT JOIN
+    appointments a ON d.id = a.doctor_id
+GROUP BY
+    d.first_name,
+    d.last_name
+ORDER BY
+    number_of_patients DESC;
+
+
+--task 7:
+--2. Create indexes to optimize search on appointments based on appointment_date
+
+CREATE INDEX 
+idx_appointments_appointment_date 
+ON appointments (appointment_date);
